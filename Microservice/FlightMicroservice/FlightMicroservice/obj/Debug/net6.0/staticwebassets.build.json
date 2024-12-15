@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "a5F/Hs1GwdY6O5ssp8fsTw3BqcZTrX9mvWrViRe63mI=",
+  "Source": "FlightMicroservice",
+  "BasePath": "_content/FlightMicroservice",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\FlightSystem\\src\\FlightSystem.Service\\FlightSystem.Service.csproj": {}
+    "E:\\FlightSystems\\FlightSystem\\src\\FlightSystem.Service\\FlightSystem.Service.csproj": {}
   },
   "projects": {
-    "E:\\FlightSystem\\src\\FlightSystem.Service\\FlightSystem.Service.csproj": {
+    "E:\\FlightSystems\\FlightSystem\\src\\FlightSystem.Service\\FlightSystem.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FlightSystem\\src\\FlightSystem.Service\\FlightSystem.Service.csproj",
+        "projectUniqueName": "E:\\FlightSystems\\FlightSystem\\src\\FlightSystem.Service\\FlightSystem.Service.csproj",
         "projectName": "FlightSystem.Service",
-        "projectPath": "E:\\FlightSystem\\src\\FlightSystem.Service\\FlightSystem.Service.csproj",
+        "projectPath": "E:\\FlightSystems\\FlightSystem\\src\\FlightSystem.Service\\FlightSystem.Service.csproj",
         "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "E:\\FlightSystem\\src\\FlightSystem.Service\\obj\\",
+        "outputPath": "E:\\FlightSystems\\FlightSystem\\src\\FlightSystem.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"

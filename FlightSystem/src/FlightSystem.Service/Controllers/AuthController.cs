@@ -1,29 +1,34 @@
-using FlightSystem.Service.DTOs;
+// Controllers/AuthController.cs
 using Microsoft.AspNetCore.Mvc;
+using FlightSystem.Services;
+using FlightSystem.Models;
 
-namespace FlightSystem.Service.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class AuthController : ControllerBase
 {
-    [ApiController]
-    [Route("auth")]
-    public class AuthController : ControllerBase
+    private readonly AuthService _authService;
+
+    public AuthController(AuthService authService)
     {
-        private static readonly List<UserDTO> users = new()
-    {
-        new UserDTO(Guid.NewGuid(), "trinh", "password", "admin"),
-        new UserDTO(Guid.NewGuid(), "trinh", "123456", "user"),
-    };
+        _authService = authService;
+    }
+
     [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginDTO login)
+    public IActionResult Login([FromBody] LoginModel model)
     {
-        var user = users.SingleOrDefault(u => u.Username == login.Username && u.Password == login.Password);
+        var user = _authService.Authenticate(model.Username, model.Password);
 
         if (user == null)
         {
-            return Unauthorized(new { Message = "Username or password is not correct!" });
+            return Unauthorized();
         }
+        return Ok(new { message = "Login successful", user });
+    }
+}
 
-        var token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
-        return Ok(new { Token = token, Role = user.Role });
-    }
-    }
+public class LoginModel
+{
+    public string Username { get; set; }
+    public string Password { get; set; }
 }
