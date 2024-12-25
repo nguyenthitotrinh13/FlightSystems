@@ -4,11 +4,13 @@ using FlightMicroservice.Models;
 using System;
 using System.Collections.Generic;
 using System.Transactions;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FlightMicroservice.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FlightController : ControllerBase
@@ -26,7 +28,7 @@ namespace FlightMicroservice.Controllers
         }
 
         [HttpGet("{id}", Name = "Get")]
-        public IActionResult Get(string id)
+        public IActionResult Get(int id)
         {
             var flights = _flightRepository.GetFlightByID(id);
             return new OkObjectResult(flights);
@@ -56,7 +58,7 @@ namespace FlightMicroservice.Controllers
            return new NoContentResult();
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(int id)
         {
             _flightRepository.DeleteFlight(id);
             return new OkResult();

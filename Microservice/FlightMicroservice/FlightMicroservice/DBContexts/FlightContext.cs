@@ -3,11 +3,12 @@ using FlightMicroservice.Models;
 
 namespace FlightMicroservice.DBContexts
 {
-    public class FlightContext: DbContext
+    public class FlightContext : DbContext
     {
         public FlightContext(DbContextOptions<FlightContext> options) : base(options)
         {
         }
+
         public DbSet<Flight> Flights { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -15,24 +16,24 @@ namespace FlightMicroservice.DBContexts
             modelBuilder.Entity<Flight>().HasData(
                 new Flight
                 {
-                    FlightID = "FL001",
-                    FlightNumber = "UA123",
+                    FlightID = 1,
+                    FlightNumber = "UA123",  // Cung cấp dữ liệu cho tất cả các trường bắt buộc
                     Destination = "New York",
-                    DepartureTime = DateTime.Now.AddHours(2)
+                    DepartureTime = new DateTime(2024, 12, 18, 10, 0, 0)
                 },
                 new Flight
                 {
-                    FlightID = "FL002",
-                    FlightNumber = "DL456",
+                    FlightID = 2,
+                    FlightNumber = "DL456",  // Cung cấp dữ liệu cho tất cả các trường bắt buộc
                     Destination = "Los Angeles",
-                    DepartureTime = DateTime.Now.AddHours(3)
+                    DepartureTime = new DateTime(2024, 12, 18, 11, 0, 0)
                 },
                 new Flight
                 {
-                    FlightID = "FL003",
-                    FlightNumber = "AA789",
+                    FlightID = 3,
+                    FlightNumber = "AA789",  // Cung cấp dữ liệu cho tất cả các trường bắt buộc
                     Destination = "Chicago",
-                    DepartureTime = DateTime.Now.AddHours(4)
+                    DepartureTime = new DateTime(2024, 12, 18, 12, 0, 0)
                 }
             );
         }

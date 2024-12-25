@@ -5,9 +5,9 @@ namespace FlightMicroservice.Repository
     public interface IFlightRepository
     {
         IEnumerable<Flight> GetFlights();
-        Flight GetFlightByID(string FlightID);
+        Flight GetFlightByID(int FlightID);
         void InsertFlight(Flight flight);
-        void DeleteFlight(string FlightID);
+        void DeleteFlight(int FlightID);
         void UpdateFlight(Flight flight);
         void Save();
     }

@@ -24,8 +24,11 @@ namespace FlightMicroservice.Migrations
 
             modelBuilder.Entity("FlightMicroservice.Models.Flight", b =>
                 {
-                    b.Property<string>("FlightID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("FlightID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FlightID"), 1L, 1);
 
                     b.Property<DateTime>("DepartureTime")
                         .HasColumnType("datetime2");
@@ -45,22 +48,22 @@ namespace FlightMicroservice.Migrations
                     b.HasData(
                         new
                         {
-                            FlightID = "FL001",
-                            DepartureTime = new DateTime(2024, 12, 14, 1, 54, 2, 783, DateTimeKind.Local).AddTicks(5291),
+                            FlightID = 1,
+                            DepartureTime = new DateTime(2024, 12, 18, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             Destination = "New York",
                             FlightNumber = "UA123"
                         },
                         new
                         {
-                            FlightID = "FL002",
-                            DepartureTime = new DateTime(2024, 12, 14, 2, 54, 2, 783, DateTimeKind.Local).AddTicks(5401),
+                            FlightID = 2,
+                            DepartureTime = new DateTime(2024, 12, 18, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Destination = "Los Angeles",
                             FlightNumber = "DL456"
                         },
                         new
                         {
-                            FlightID = "FL003",
-                            DepartureTime = new DateTime(2024, 12, 14, 3, 54, 2, 783, DateTimeKind.Local).AddTicks(5403),
+                            FlightID = 3,
+                            DepartureTime = new DateTime(2024, 12, 18, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Destination = "Chicago",
                             FlightNumber = "AA789"
                         });

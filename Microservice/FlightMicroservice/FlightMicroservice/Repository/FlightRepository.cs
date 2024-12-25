@@ -14,14 +14,14 @@ namespace FlightMicroservice.Repository
         {
             _dbContext = dbContext; 
         }
-        public void DeleteFlight(string flightId)
+        public void DeleteFlight(int flightId)
         {
             var flight = _dbContext.Flights.Find(flightId);
             _dbContext.Flights.Remove(flight);
             Save();
         }
 
-        public Flight GetFlightByID(string flightID)
+        public Flight GetFlightByID(int flightID)
         {
             return _dbContext.Flights.Find(flightID);
         }
