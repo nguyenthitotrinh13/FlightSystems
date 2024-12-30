@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Microservice\\FlightMicroservice\\FlightMicroservice\\FlightMicroservice.csproj": {}
+    "E:\\FlightSystems\\Microservice\\FlightMicroservice\\FlightMicroservice\\FlightMicroservice.csproj": {}
   },
   "projects": {
-    "E:\\Microservice\\FlightMicroservice\\FlightMicroservice\\FlightMicroservice.csproj": {
+    "E:\\FlightSystems\\Microservice\\FlightMicroservice\\FlightMicroservice\\FlightMicroservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Microservice\\FlightMicroservice\\FlightMicroservice\\FlightMicroservice.csproj",
+        "projectUniqueName": "E:\\FlightSystems\\Microservice\\FlightMicroservice\\FlightMicroservice\\FlightMicroservice.csproj",
         "projectName": "FlightMicroservice",
-        "projectPath": "E:\\Microservice\\FlightMicroservice\\FlightMicroservice\\FlightMicroservice.csproj",
+        "projectPath": "E:\\FlightSystems\\Microservice\\FlightMicroservice\\FlightMicroservice\\FlightMicroservice.csproj",
         "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "E:\\Microservice\\FlightMicroservice\\FlightMicroservice\\obj\\",
+        "outputPath": "E:\\FlightSystems\\Microservice\\FlightMicroservice\\FlightMicroservice\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,4 +1,5 @@
 ﻿using FlightMicroservice.DBContexts;
+using FlightMicroservice.Models;
 using FlightMicroservice.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -11,17 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 ConfigurationManager configuration = builder.Configuration;
 
-// Add services to the container.
-
-// For Entity Framework - ApplicationDbContext (Identity)
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(configuration.GetConnectionString("FlightDB")));
-
-// For Identity - using ApplicationDbContext for Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(configuration.GetConnectionString("FlightDB")));
 builder.Services.AddDbContext<FlightContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("FlightDB")));
 builder.Services.AddDbContext<DocumentContext>(options =>
@@ -42,6 +38,10 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuer = true,
         ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ClockSkew = TimeSpan.Zero,
+
         ValidAudience = configuration["JWT:ValidAudience"],
         ValidIssuer = configuration["JWT:ValidIssuer"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
