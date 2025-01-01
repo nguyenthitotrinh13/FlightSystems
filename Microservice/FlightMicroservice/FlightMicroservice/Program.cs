@@ -47,6 +47,22 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
     };
 });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CanManageUsers", policy =>
+       policy.RequireRole("Admin"));
+    options.AddPolicy("CanEditAll", policy =>
+        policy.RequireClaim("Permission", "EditAll"));
+    options.AddPolicy("CanViewAll", policy =>
+        policy.RequireClaim("Permission", "ViewAll"));
+
+    options.AddPolicy("EditDocuments", policy =>
+        policy.RequireClaim("Permission", "EditDocuments"));
+    options.AddPolicy("ViewDocuments", policy =>    
+        policy.RequireClaim("Permission", "ViewDocuments"));
+});
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IAuthenticateRepository, AuthenticateRepository>();
 builder.Services.AddTransient<IFlightRepository, FlightRepository>();
 builder.Services.AddTransient<IDocumentRepository, DocumentRepository>();
 builder.Services.AddControllers();

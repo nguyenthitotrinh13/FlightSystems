@@ -8,7 +8,7 @@ using FlightMicroservice.Models;
 
 namespace FlightMicroservice.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DocumentController : ControllerBase
@@ -21,6 +21,7 @@ namespace FlightMicroservice.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "ViewDocuments")]
         public IActionResult Get()
         {
             var documents = _documentRepository.GetDocument();
@@ -28,6 +29,7 @@ namespace FlightMicroservice.Controllers
         }
 
         [HttpGet("{id}", Name = "GetDocument")]
+        [Authorize(Policy = "ViewDocuments")]
         public IActionResult Get(int id)
         {
             var document = _documentRepository.GetDocumentByID(id);
@@ -39,6 +41,7 @@ namespace FlightMicroservice.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EditDocuments")]
         public IActionResult Post([FromBody] Document document)
         {
             if (document == null)
@@ -54,7 +57,8 @@ namespace FlightMicroservice.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("edit-own")]
+        [Authorize(Policy = "EditDocuments")]
         public IActionResult Put([FromBody] Document document)
         {
             if (document == null)

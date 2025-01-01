@@ -14,5 +14,6 @@ namespace FlightMicroservice.DBContexts
         {
             base.OnModelCreating(builder);
         }
+
     }
 }
