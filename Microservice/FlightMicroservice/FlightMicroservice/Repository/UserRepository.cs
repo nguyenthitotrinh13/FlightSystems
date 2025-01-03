@@ -1,5 +1,6 @@
 ﻿using FlightMicroservice.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace FlightMicroservice.Repository
@@ -77,14 +78,7 @@ namespace FlightMicroservice.Repository
 
             await _userManager.RemoveFromRoleAsync(user, role);
         }
-        //public async Task AddPermissionToUserAsync(string userId, string permission)
-        //{
-        //    var user = await _userManager.FindByIdAsync(userId);
-        //    if (user == null)
-        //        throw new Exception("User not found");
 
-        //    await _userManager.AddClaimAsync(user, new Claim("Permission", permission));
-        //}
 
         public async Task AddPermissionToRoleAsync(PermissionRequest model)
         {
@@ -95,17 +89,65 @@ namespace FlightMicroservice.Repository
             var claim = new Claim("Permission", model.Permission);
             await _roleManager.AddClaimAsync(role, claim);
         }
-        public async Task RemovePermissionFromUserAsync(string userId, string permission)
+        public async Task DeactivateUserAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
-                throw new Exception("User not found");
+            {
+                throw new Exception("User not found.");
+            }
 
-            var claims = await _userManager.GetClaimsAsync(user);
-            var claimToRemove = claims.FirstOrDefault(c => c.Type == "Permission" && c.Value == permission);
+            user.IsActive = false; 
+            var result = await _userManager.UpdateAsync(user);
 
-            if (claimToRemove != null)
-                await _userManager.RemoveClaimAsync(user, claimToRemove);
+            if (!result.Succeeded)
+            {
+                throw new Exception("Failed to deactivate user.");
+            }
         }
+        public async Task ActivateUserAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            if (user.IsActive)
+            {
+                throw new Exception("User is already active.");
+            }
+
+            user.IsActive = true; // Kích hoạt tài khoản
+            var result = await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                throw new Exception("Failed to activate user.");
+            }
+        }
+
+
+        //public async Task RemovePermissionFromUserAsync(string userId, string permission)
+        //{
+        //    var user = await _userManager.FindByIdAsync(userId);
+        //    if (user == null)
+        //        throw new Exception("User not found");
+
+        //    var claims = await _userManager.GetClaimsAsync(user);
+        //    var claimToRemove = claims.FirstOrDefault(c => c.Type == "Permission" && c.Value == permission);
+
+        //    if (claimToRemove != null)
+        //        await _userManager.RemoveClaimAsync(user, claimToRemove);
+        //}
+
+        //public async Task AddPermissionToUserAsync(string userId, string permission)
+        //{
+        //    var user = await _userManager.FindByIdAsync(userId);
+        //    if (user == null)
+        //        throw new Exception("User not found");
+
+        //    await _userManager.AddClaimAsync(user, new Claim("Permission", permission));
+        //}
     }
 }

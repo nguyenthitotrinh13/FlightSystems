@@ -28,6 +28,11 @@ namespace FlightMicroservice.Repository
         public async Task<IActionResult> LoginAsync(LoginModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (!user.IsActive)
+            {
+                return new UnauthorizedResult();
+            }
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
@@ -35,16 +40,21 @@ namespace FlightMicroservice.Repository
             {
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim("Permission", "ViewDocuments"),
-                new Claim("Permission", "EditDocuments"),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
                 foreach (var userRole in userRoles)
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                }
 
+                    var role = await _roleManager.FindByNameAsync(userRole);
+                    var roleClaims = await _roleManager.GetClaimsAsync(role);
+
+                    foreach (var claim in roleClaims)
+                    {
+                        authClaims.Add(claim);
+                    }
+                }
                 var token = CreateToken(authClaims);
                 var refreshToken = GenerateRefreshToken();
                 int.TryParse(_configuration["JWT:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
@@ -106,15 +116,6 @@ namespace FlightMicroservice.Repository
 
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-
-            //if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
-            //{
-            //    await _userManager.AddToRoleAsync(user, UserRoles.Admin);
-            //    await _userManager.AddClaimAsync(user, new Claim("Permission", "EditAll"));
-            //    await _userManager.AddClaimAsync(user, new Claim("Permission", "ViewAll"));
-            //    await _userManager.AddClaimAsync(user, new Claim("Permission", "EditDocuments"));
-            //    await _userManager.AddClaimAsync(user, new Claim("Permission", "ViewDocuments"));
-            //}
             if (result.Succeeded)
             {
                 await _userManager.AddClaimAsync(user, new Claim("Permission", "EditAll"));

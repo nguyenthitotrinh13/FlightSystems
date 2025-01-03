@@ -51,11 +51,6 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("CanManageUsers", policy =>
        policy.RequireRole("Admin"));
-    options.AddPolicy("CanEditAll", policy =>
-        policy.RequireClaim("Permission", "EditAll"));
-    options.AddPolicy("CanViewAll", policy =>
-        policy.RequireClaim("Permission", "ViewAll"));
-
     options.AddPolicy("EditDocuments", policy =>
         policy.RequireClaim("Permission", "EditDocuments"));
     options.AddPolicy("ViewDocuments", policy =>    
@@ -77,7 +72,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

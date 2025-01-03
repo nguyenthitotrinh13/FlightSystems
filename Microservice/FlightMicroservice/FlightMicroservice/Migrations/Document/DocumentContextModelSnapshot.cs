@@ -44,6 +44,21 @@ namespace FlightMicroservice.Migrations.Document
                     b.Property<int>("FlightId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("ModifiedCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Version")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.HasKey("DocumentId");
 
                     b.ToTable("Documents");
@@ -55,7 +70,9 @@ namespace FlightMicroservice.Migrations.Document
                             CreatedDate = new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DocumentType = "PDF",
                             FilePath = "path/to/document1.pdf",
-                            FlightId = 1
+                            FlightId = 1,
+                            ModifiedCount = 0,
+                            Version = "1.0"
                         },
                         new
                         {
@@ -63,7 +80,9 @@ namespace FlightMicroservice.Migrations.Document
                             CreatedDate = new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DocumentType = "Word",
                             FilePath = "path/to/document2.docx",
-                            FlightId = 2
+                            FlightId = 2,
+                            ModifiedCount = 0,
+                            Version = "1.0"
                         },
                         new
                         {
@@ -71,7 +90,9 @@ namespace FlightMicroservice.Migrations.Document
                             CreatedDate = new DateTime(2024, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DocumentType = "Image",
                             FilePath = "path/to/document3.jpg",
-                            FlightId = 3
+                            FlightId = 3,
+                            ModifiedCount = 0,
+                            Version = "1.0"
                         });
                 });
 #pragma warning restore 612, 618

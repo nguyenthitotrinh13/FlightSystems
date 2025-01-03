@@ -80,8 +80,6 @@ namespace FlightMicroservice.Controllers
                 {
                     return BadRequest(new { Message = "RoleName and Permission are required." });
                 }
-
-                // Gọi repo để thêm quyền vào vai trò
                 await _userRepository.AddPermissionToRoleAsync(model);
 
                 return Ok(new { Message = "Permission added to role successfully!" });
@@ -91,19 +89,49 @@ namespace FlightMicroservice.Controllers
                 return BadRequest(new { Message = ex.Message });
             }
         }
-        [HttpPost("remove-permission/{userId}")]
-        public async Task<IActionResult> RemovePermission(string userId, string permission)
+        [HttpPut("deactivate/{id}")]
+        public async Task<IActionResult> DeactivateUser(string id)
         {
             try
             {
-                await _userRepository.RemovePermissionFromUserAsync(userId, permission);
-                return Ok(new { Message = "Permission removed successfully!" });
+                await _userRepository.DeactivateUserAsync(id);
+                return Ok(new { Message = "User deactivated successfully!" });
             }
             catch (Exception ex)
             {
                 return BadRequest(new { Message = ex.Message });
             }
         }
+        [HttpPut("activate/{id}")]
+        public async Task<IActionResult> ActivateUser(string id)
+        {
+            try
+            {
+                await _userRepository.ActivateUserAsync(id);
+                return Ok(new { Message = "User activated successfully!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+
+        //[HttpPost("remove-permission/{userId}")]
+        //public async Task<IActionResult> RemovePermission(string userId, [FromBody] PermissionRequest model)
+        //{
+        //    try
+        //    {
+        //        // Sử dụng model.Permission để lấy quyền cần xóa
+        //        await _userRepository.RemovePermissionFromUserAsync(userId, model.Permission);
+        //        return Ok(new { Message = "Permission removed successfully!" });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new { Message = ex.Message });
+        //    }
+
+        //}
 
     }
 }

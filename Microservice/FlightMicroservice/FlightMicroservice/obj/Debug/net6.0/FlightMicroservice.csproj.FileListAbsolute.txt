@@ -136,3 +136,4 @@ E:\FlightSystems\Microservice\FlightMicroservice\FlightMicroservice\obj\Debug\ne
 E:\FlightSystems\Microservice\FlightMicroservice\FlightMicroservice\obj\Debug\net6.0\FlightMicroservice.pdb
 E:\FlightSystems\Microservice\FlightMicroservice\FlightMicroservice\obj\Debug\net6.0\FlightMicroservice.genruntimeconfig.cache
 E:\FlightSystems\Microservice\FlightMicroservice\FlightMicroservice\obj\Debug\net6.0\ref\FlightMicroservice.dll
+E:\FlightSystems\Microservice\FlightMicroservice\FlightMicroservice\bin\Debug\net6.0\FlightMicroservice.staticwebassets.runtime.json

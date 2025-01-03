@@ -12,5 +12,12 @@ namespace FlightMicroservice.Models
         public string FilePath { get; set; }
         public DateTime CreatedDate { get; set; }
         public int FlightId { get; set; }
+        [Required]
+        [MaxLength(10)]
+        public string Version { get; set; } = "1.0";
+        [MaxLength(50)]
+        public string? ModifiedBy { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int ModifiedCount { get; set; }
     }
 }

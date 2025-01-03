@@ -20,7 +20,11 @@ namespace FlightMicroservice.DBContexts
                     DocumentType = "PDF",
                     FilePath = "path/to/document1.pdf",
                     CreatedDate = new DateTime(2024, 12, 1),
-                    FlightId = 1
+                    FlightId = 1,
+                    Version = "1.0",
+                    ModifiedBy = null,
+                    ModifiedDate = null, 
+                    ModifiedCount = 0,
                 },
                 new Document
                 {
@@ -28,7 +32,11 @@ namespace FlightMicroservice.DBContexts
                     DocumentType = "Word",
                     FilePath = "path/to/document2.docx",
                     CreatedDate = new DateTime(2024, 12, 5),
-                    FlightId = 2
+                    FlightId = 2,
+                    Version = "1.0",
+                    ModifiedBy = null,
+                    ModifiedDate = null,
+                    ModifiedCount = 0,
                 },
                 new Document
                 {
@@ -36,7 +44,11 @@ namespace FlightMicroservice.DBContexts
                     DocumentType = "Image",
                     FilePath = "path/to/document3.jpg",
                     CreatedDate = new DateTime(2024, 12, 10),
-                    FlightId = 3
+                    FlightId = 3,
+                    Version = "1.0",
+                    ModifiedBy = null,
+                    ModifiedDate = null,
+                    ModifiedCount = 0,
                 }
             );
         }

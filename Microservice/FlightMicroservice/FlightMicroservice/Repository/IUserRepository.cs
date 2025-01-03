@@ -13,6 +13,9 @@ namespace FlightMicroservice.Repository
         Task AddRoleToUserAsync(string userEmail, string roleName);
         Task RemoveRoleFromUserAsync(string userId, string role);
         Task AddPermissionToRoleAsync(PermissionRequest model);
-        Task RemovePermissionFromUserAsync(string userId, string permission);
+        Task DeactivateUserAsync(string userId);
+        Task ActivateUserAsync(string userId);
+        
+        //Task RemovePermissionFromUserAsync(string userId, string permission);
     }
 }

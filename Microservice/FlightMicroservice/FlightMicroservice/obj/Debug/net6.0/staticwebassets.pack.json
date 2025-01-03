@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\FlightSystems\\Microservice\\FlightMicroservice\\FlightMicroservice\\wwwroot\\documents\\AS_Back-end Exercises (1).pdf",
+      "PackagePath": "staticwebassets\\documents\\AS_Back-end Exercises (1).pdf"
+    },
+    {
+      "Id": "E:\\FlightSystems\\Microservice\\FlightMicroservice\\FlightMicroservice\\wwwroot\\documents\\[Internship]_BACKEND_2024_18_11.11.2024_NguyenThiToTrinh_14-11-2024_Baitap1_Phan1&2.pdf",
+      "PackagePath": "staticwebassets\\documents\\[Internship]_BACKEND_2024_18_11.11.2024_NguyenThiToTrinh_14-11-2024_Baitap1_Phan1&2.pdf"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.FlightMicroservice.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.FlightMicroservice.props",
+      "PackagePath": "build\\FlightMicroservice.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.FlightMicroservice.props",
+      "PackagePath": "buildMultiTargeting\\FlightMicroservice.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.FlightMicroservice.props",
+      "PackagePath": "buildTransitive\\FlightMicroservice.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
